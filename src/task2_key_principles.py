@@ -1,25 +1,34 @@
-import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
-from matplotlib import pyplot as plt
 
+def generate_data_and_plot_scatter():
+    # Step 1: Generate a dataset
+    np.random.seed(42)  # For reproducibility
+    x = np.random.uniform(0, 50, 100)  # Generate 100 random points for 'x'
+    y = 2 * x + np.random.normal(0, 10, 100)  # Create 'y' as a linear function of 'x' with some noise
+    
+    # Create a DataFrame for ease of use with Seaborn
+    data = pd.DataFrame({'x': x, 'y': y})
 
-def create_scatter_plot(data):
-    """
-    Creates a scatter plot using Seaborn.
+    # Step 2: Set Seaborn style for simplicity
+    sns.set(style="whitegrid")
 
-    Parameters:
-    data (DataFrame): A DataFrame containing 'x' and 'y' columns.
-    """
-    fig, _ = plt.subplots()
-    pass
-    return fig
+    # Step 3: Create the scatter plot
+    plt.figure(figsize=(8, 5))
+    scatter_plot = sns.scatterplot(x='x', y='y', data=data, color="royalblue", alpha=0.7)
 
+    # Step 4: Customize the plot for clarity
+    plt.title("Scatter Plot of X vs. Y", fontsize=16, fontweight='bold')
+    plt.xlabel("X Variable", fontsize=12)
+    plt.ylabel("Y Variable", fontsize=12)
+    plt.xticks(fontsize=10)
+    plt.yticks(fontsize=10)
 
+    # Step 5: Show the plot
+    plt.tight_layout()
+    plt.show()
 
-# Example data
-data = pd.DataFrame({
-    'x': np.random.rand(50),
-    'y': np.random.rand(50)
-})
-create_scatter_plot(data)
+# Run the function
+generate_data_and_plot_scatter()
